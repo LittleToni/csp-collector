@@ -1,1 +1,1 @@
-# csp-collector
+# CSP Collector

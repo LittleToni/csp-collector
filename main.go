@@ -14,9 +14,11 @@ func main() {
 	}
 
 	// Register handlers for various endpoints
-	http.HandleFunc("/", HealthcheckHandler)
 	http.HandleFunc("/health", HealthcheckHandler)
 	http.HandleFunc("/healthcheck", HealthcheckHandler)
+
+	http.HandleFunc("/report", ReportHandler)
+	http.HandleFunc("/report-only", ReportOnlyHandler)
 
 	// Start the server.
 	fmt.Printf("Server started at port %s!", config.Port)
