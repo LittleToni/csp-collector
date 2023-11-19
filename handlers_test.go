@@ -30,13 +30,14 @@ func TestGetHealthcheckHandler(t *testing.T) {
 }
 
 func TestPostReportHandler(t *testing.T) {
-	req, err := http.NewRequest("POST", "/report", nil)
+	body := strings.NewReader("test report")
+	req, err := http.NewRequest("POST", "/report", body)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(ReportHandler)
+	handler := http.HandlerFunc(Post(ReportHandler))
 
 	handler.ServeHTTP(rr, req)
 
@@ -52,13 +53,14 @@ func TestPostReportHandler(t *testing.T) {
 }
 
 func TestGetReportHandler(t *testing.T) {
-	req, err := http.NewRequest("GET", "/report", nil)
+	body := strings.NewReader("test report")
+	req, err := http.NewRequest("GET", "/report", body)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(ReportHandler)
+	handler := http.HandlerFunc(Post(ReportHandler))
 
 	handler.ServeHTTP(rr, req)
 
@@ -66,7 +68,7 @@ func TestGetReportHandler(t *testing.T) {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusMethodNotAllowed)
 	}
 
-	expected := `Method not Allowed`
+	expected := `Method not Allowed!`
 	actual := strings.TrimSpace(rr.Body.String())
 	if actual != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v", actual, expected)
@@ -74,13 +76,14 @@ func TestGetReportHandler(t *testing.T) {
 }
 
 func TestPostReportOnlyHandler(t *testing.T) {
-	req, err := http.NewRequest("POST", "/report-only", nil)
+	body := strings.NewReader("test report")
+	req, err := http.NewRequest("POST", "/report-only", body)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(ReportOnlyHandler)
+	handler := http.HandlerFunc(Post(ReportOnlyHandler))
 
 	handler.ServeHTTP(rr, req)
 
@@ -96,13 +99,14 @@ func TestPostReportOnlyHandler(t *testing.T) {
 }
 
 func TestGetReportOnlyHandler(t *testing.T) {
-	req, err := http.NewRequest("GET", "/report-only", nil)
+	body := strings.NewReader("test report")
+	req, err := http.NewRequest("GET", "/report-only", body)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(ReportOnlyHandler)
+	handler := http.HandlerFunc(Post(ReportOnlyHandler))
 
 	handler.ServeHTTP(rr, req)
 
@@ -110,7 +114,7 @@ func TestGetReportOnlyHandler(t *testing.T) {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusMethodNotAllowed)
 	}
 
-	expected := `Method not Allowed`
+	expected := `Method not Allowed!`
 	actual := strings.TrimSpace(rr.Body.String())
 	if actual != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v", actual, expected)

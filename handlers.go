@@ -18,24 +18,22 @@ func HealthcheckHandler(w http.ResponseWriter, r *http.Request) {
 
 // ReportHandler accepts a csp violation report
 func ReportHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not Allowed", http.StatusMethodNotAllowed)
-		return
-	}
+	writer := &ConsoleReportWriter{}
 
-	// Todo: stdout the report
+	if err := ProcessReport(r, writer); err != nil {
+		http.Error(w, "", http.StatusInternalServerError)
+	}
 
 	w.WriteHeader(http.StatusNoContent)
 }
 
 // ReportOnlyHandler accepts a csp violation report
 func ReportOnlyHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not Allowed", http.StatusMethodNotAllowed)
-		return
-	}
+	writer := &ConsoleReportWriter{}
 
-	// Todo: stdout the report
+	if err := ProcessReport(r, writer); err != nil {
+		http.Error(w, "", http.StatusInternalServerError)
+	}
 
 	w.WriteHeader(http.StatusNoContent)
 }
