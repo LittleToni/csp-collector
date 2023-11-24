@@ -12,6 +12,16 @@ cd csp-collector
 go build
 ```
 
+## Configuration
+
+Run the following command to initialize CSP Collector:
+
+```sh
+make init
+```
+
+Edit the `.env` file to customize CSP Collector.
+
 ## Usage
 
 After installation, you can start CSP Collector by running:
