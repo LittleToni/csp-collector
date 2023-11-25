@@ -4,12 +4,11 @@ CSP Collector is a Go-based tool designed to collect and process Content Securit
 
 ## Installation
 
-To install CSP Collector, ensure you have Go installed on your system and follow these steps:
+To install CSP Collector, follow these steps:
 
 ```sh
 git clone https://github.com/LittleToni/csp-collector
 cd csp-collector
-go build
 ```
 
 ## Configuration
@@ -24,13 +23,29 @@ Edit the `.env` file to customize CSP Collector.
 
 ## Usage
 
-After installation, you can start CSP Collector by running:
+Build CSP Collector by running:
 
 ```sh
-./csp-collector
+make build
+```
+
+After build, you can start CSP Collector by running:
+
+```sh
+make start
 ```
 
 To use CSP Collector in your web application, add the appropriate CSP report-to to your CSP header.
+
+## Development
+
+### Test
+
+Test CSP Collector by running:
+
+```sh
+make test
+```
 
 ## License
 
