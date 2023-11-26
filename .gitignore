@@ -8,6 +8,8 @@
 *.so
 *.dylib
 
+csp-collector
+
 # Test binary, built with `go test -c`
 *.test
 
