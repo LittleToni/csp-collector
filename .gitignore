@@ -8,7 +8,7 @@
 *.so
 *.dylib
 
-csp-collector
+/csp-collector
 
 # Test binary, built with `go test -c`
 *.test
