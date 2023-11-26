@@ -39,12 +39,36 @@ To use CSP Collector in your web application, add the appropriate CSP report-to 
 
 ## Development
 
+This project is structured according to the [Standard Go Project Layout](https://github.com/golang-standards/project-layout/tree/master). For more details on the project structure and its components, you can refer to the [Standard Go Project Layout documentation](https://github.com/golang-standards/project-layout/tree/master).
+
 ### Test
 
 Test CSP Collector by running:
 
 ```sh
 make test
+```
+
+### Example
+
+Post a sample csp violation report:
+
+```sh
+curl  -X POST \
+  'http://localhost:8080/report' \
+  --header 'Content-Type: application/csp-report' \
+  --data-raw '{
+    "csp-report": {
+      "blocked-uri": "http://example.com/css/style.css",
+      "disposition": "report",
+      "document-uri": "http://example.com/signup.html",
+      "effective-directive": "style-src-elem",
+      "original-policy": "default-src 'none'; style-src cdn.example.com; report-to /_/csp-reports",
+      "referrer": "",
+      "status-code": 200,
+      "violated-directive": "style-src-elem"
+    }
+  }'
 ```
 
 ## License
